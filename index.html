@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Auto Pause - Auto Pause Video Extension</title>
+    <title>AutoPauseVideo - Extension</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="icons/icon.png" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -74,6 +74,7 @@
       
       /* Mobile menu styles */
       .mobile-menu {
+        background: #1e293b !important; /* dark blue for readability */
         transform: translateY(-100%);
         opacity: 0;
         visibility: hidden;
@@ -87,35 +88,54 @@
       }
       
       .hamburger {
-        cursor: pointer;
-        transition: all 0.3s ease;
+        width: 48px;
+        height: 48px;
       }
       
-      .hamburger:hover {
-        transform: scale(1.05);
+      .hamburger.glass.p-3 {
+        padding: 12px !important;
       }
       
       .hamburger-line-1,
       .hamburger-line-2,
       .hamburger-line-3 {
-        transform-origin: center;
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        height: 2.5px;
+        background: white;
+        border-radius: 2px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      .hamburger-line-1 {
+        top: 15px;
+      }
+      
+      .hamburger-line-2 {
+        top: 22px;
+      }
+      
+      .hamburger-line-3 {
+        top: 29px;
       }
       
       .hamburger.active .hamburger-line-1 {
-        transform: rotate(45deg) translate(2px, 2px);
+        top: 22px;
+        transform: rotate(45deg);
       }
       
       .hamburger.active .hamburger-line-2 {
         opacity: 0;
-        transform: scaleX(0);
       }
       
       .hamburger.active .hamburger-line-3 {
-        transform: rotate(-45deg) translate(2px, -2px);
+        top: 22px;
+        transform: rotate(-45deg);
       }
       
       /* Hide hamburger on larger screens */
-      @media (min-width: 533px) {
+      @media (min-width: 625px) {
         .hamburger {
           display: none !important;
         }
@@ -125,7 +145,7 @@
       }
       
       /* Hide desktop nav on smaller screens */
-      @media (max-width: 532px) {
+      @media (max-width: 624px) {
         .desktop-nav {
           display: none !important;
         }
@@ -139,7 +159,7 @@
       <div class="max-w-7xl mx-auto flex justify-between items-center">
         <div class="flex items-center space-x-3">
           <img src="icons/icon.png" alt="Logo" class="w-10 h-10 rounded-lg" />
-          <span class="text-xl font-bold gradient-text">AutoPause</span>
+          <span class="text-xl font-bold gradient-text">AutoPauseVideo</span>
         </div>
         
         <!-- Desktop Navigation - Shows social icons on larger screens -->
@@ -238,8 +258,7 @@
         
         <h1 class="text-6xl md:text-8xl font-black mb-6 leading-tight">
           <span class="gradient-text">Auto Pause</span><br>
-          <span class="text-white">Video</span> 
-          <span class="text-4xl">🎬</span>
+          <span class="text-white">Video</span>
         </h1>
         
         <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto font-light">
@@ -263,6 +282,32 @@
         </div>
       </div>
     </header>
+
+    <!-- How It Works Section -->
+    <section class="px-6 py-20 bg-gradient-to-br from-slate-900/80 to-purple-900/80">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
+          🎬 How It Works
+        </h2>
+        <div class="grid md:grid-cols-3 gap-12">
+          <div class="glass-card rounded-3xl p-8 text-center flex flex-col items-center">
+            <img src="screenshots/how1.gif" alt="Watching YouTube Video" class="rounded-xl w-full max-w-xs mb-6 shadow-2xl" />
+            <h3 class="text-2xl font-semibold mb-4">1. Watch a Video</h3>
+            <p class="text-gray-300">Start watching your favorite video on YouTube or any supported site.</p>
+          </div>
+          <div class="glass-card rounded-3xl p-8 text-center flex flex-col items-center">
+            <img src="screenshots/how2.gif" alt="Switching Tabs" class="rounded-xl w-full max-w-xs mb-6 shadow-2xl" />
+            <h3 class="text-2xl font-semibold mb-4">2. Switch Tabs or Apps</h3>
+            <p class="text-gray-300">When you switch to another tab or app, the extension automatically pauses the video so you never miss a moment.</p>
+          </div>
+          <div class="glass-card rounded-3xl p-8 text-center flex flex-col items-center">
+            <img src="screenshots/how3.gif" alt="Auto Resume Video" class="rounded-xl w-full max-w-xs mb-6 shadow-2xl" />
+            <h3 class="text-2xl font-semibold mb-4">3. Return &amp; Resume</h3>
+            <p class="text-gray-300">When you return to the video tab, playback resumes automatically—seamless and effortless!</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Features Section -->
     <section class="px-6 py-20">
@@ -438,9 +483,9 @@
         }
       });
       
-      // Close mobile menu when window is resized above 532px
+      // Close mobile menu when window is resized above 624px
       window.addEventListener('resize', function() {
-        if (window.innerWidth > 532) {
+        if (window.innerWidth > 624) {
           closeMobileMenu();
         }
       });
