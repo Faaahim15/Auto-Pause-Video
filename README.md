@@ -67,4 +67,3 @@ Click the extension icon in your toolbar to toggle the functionality:
 
 ---
 
-**Bismillah** and let the extension do the watching for you 💻✨
